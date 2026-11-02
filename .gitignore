@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.angular/
+.DS_Store
+hw6-changes.zip
+frontend/restaurant-frontend-app/src/environments/environment.production.ts

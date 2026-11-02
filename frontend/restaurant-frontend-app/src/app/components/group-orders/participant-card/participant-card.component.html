@@ -1,0 +1,44 @@
+<article class="card" [attr.aria-label]="title()">
+  <header class="card-header">
+    <div class="heading">
+      <h2 class="title">{{ title() }}</h2>
+      @if (participant().isSubmitted) {
+        <span class="chip submitted">Submitted</span>
+      } @else {
+        <span class="chip pending">Still choosing</span>
+      }
+    </div>
+
+    @if (canRemove()) {
+      <button type="button" class="remove-button" [attr.aria-label]="removeLabel()" (click)="onRemove()">
+        Remove Guest
+      </button>
+    }
+  </header>
+
+  @if (lines().length) {
+    <ul class="items">
+      @for (line of lines(); track line.dish.id) {
+        <li class="item">
+          @if (line.dish.imageUrl) {
+            <img class="avatar" [src]="line.dish.imageUrl" alt="" width="40" height="40" loading="lazy" />
+          } @else {
+            <span class="avatar initial" aria-hidden="true">{{ line.initial }}</span>
+          }
+          <div class="dish">
+            <p class="name">{{ line.dish.name }}</p>
+            @if (line.dish.weight) {
+              <p class="weight">{{ line.dish.weight }}</p>
+            }
+          </div>
+          <p class="qty" [attr.aria-label]="'Quantity ' + line.quantity">× {{ line.quantity }}</p>
+          <p class="price">{{ line.lineTotal | currency }}</p>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="empty">No dishes yet</p>
+  }
+
+  <p class="subtotal"><span>Subtotal</span><span>{{ participant().total | currency }}</span></p>
+</article>

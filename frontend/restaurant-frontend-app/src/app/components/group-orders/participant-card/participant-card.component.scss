@@ -1,0 +1,194 @@
+@use 'app/shared/styles/abstracts/colors' as color;
+
+:host {
+  display: block;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: color.$neutral-0;
+  border-radius: 12px;
+}
+
+.card-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  color: color.$neutral-900;
+  overflow-wrap: anywhere;
+}
+
+.chip {
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+
+  &.submitted {
+    color: color.$green-800;
+    background: color.$green-100;
+  }
+
+  &.pending {
+    color: color.$neutral-700;
+    background: color.$neutral-100;
+    border: 1px dashed color.$neutral-400;
+  }
+}
+
+.remove-button {
+  padding: 4px 8px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: color.$neutral-900;
+  background: none;
+  border: none;
+  border-bottom: 1px solid color.$neutral-900;
+  cursor: pointer;
+
+  &:hover {
+    color: color.$red-400;
+    border-bottom-color: color.$red-400;
+  }
+
+  &:focus-visible {
+    outline: 2px solid color.$orange-400;
+    outline-offset: 2px;
+  }
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto 72px;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid color.$neutral-100;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.initial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: color.$green-600;
+  background: color.$green-100;
+}
+
+.dish {
+  min-width: 0;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+
+.weight {
+  font-size: 12px;
+  line-height: 16px;
+  color: color.$neutral-600;
+}
+
+.qty {
+  font-size: 14px;
+  color: color.$neutral-700;
+  white-space: nowrap;
+}
+
+.price {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.empty {
+  padding: 12px 0;
+  color: color.$neutral-600;
+}
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px 0;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 12px;
+  }
+
+  .item {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    grid-template-areas:
+      'avatar dish price'
+      'avatar qty price';
+    row-gap: 0;
+  }
+
+  .avatar {
+    grid-area: avatar;
+    width: 40px;
+    height: 40px;
+  }
+
+  .dish {
+    grid-area: dish;
+  }
+
+  .qty {
+    grid-area: qty;
+  }
+
+  .price {
+    grid-area: price;
+  }
+
+  .subtotal {
+    padding-inline: 0;
+    font-size: 16px;
+  }
+}

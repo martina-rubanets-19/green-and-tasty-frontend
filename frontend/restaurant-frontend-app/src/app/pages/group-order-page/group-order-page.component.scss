@@ -1,0 +1,261 @@
+@use 'app/shared/styles/abstracts/colors' as color;
+
+:host {
+  display: block;
+  background: color.$neutral-100;
+}
+
+.page {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 800px;
+  min-height: 60vh;
+  padding: 32px 24px 48px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid color.$bg-green;
+}
+
+.title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.page-title {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 36px;
+}
+
+.status-badge {
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  color: color.$neutral-700;
+  background: color.$neutral-200;
+
+  &.sent {
+    color: color.$neutral-900;
+    background: color.$orange-100;
+  }
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: color.$neutral-700;
+  }
+}
+
+.sync-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-height: 32px;
+}
+
+.sync-text {
+  font-size: 12px;
+  color: color.$neutral-600;
+}
+
+.sync-error {
+  color: color.$red-400;
+}
+
+.pending-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: color.$neutral-900;
+  background: color.$orange-30;
+  border: 1px solid color.$orange-100;
+  border-radius: 8px;
+
+  img {
+    margin-top: 4px;
+  }
+}
+
+.participants {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.consolidated {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: color.$neutral-0;
+  border: 1px solid color.$bg-green;
+  border-radius: 12px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.consolidated-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.consolidated-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid color.$neutral-100;
+  overflow-wrap: anywhere;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.consolidated-price {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.empty-state {
+  color: color.$neutral-600;
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 2px solid color.$bg-green;
+}
+
+.grand-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 36px;
+}
+
+.grand-total-value {
+  color: color.$green-600;
+}
+
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px 16px;
+  text-align: center;
+  background: color.$neutral-0;
+  border-radius: 12px;
+}
+
+.state-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid color.$green-100;
+  border-top-color: color.$green-600;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
+
+.dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  width: 100%;
+}
+
+.remove-confirm {
+  color: color.$red-400;
+  background: color.$neutral-0;
+  border-color: color.$red-400;
+
+  &:hover:not(:disabled) {
+    background: color.$red-30;
+  }
+
+  &:disabled {
+    color: color.$neutral-400;
+    border-color: color.$neutral-200;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 20px 16px 32px;
+  }
+
+  .page-title {
+    font-size: 22px;
+    line-height: 32px;
+  }
+
+  .grand-total {
+    font-size: 20px;
+  }
+
+  .sync-bar {
+    justify-content: space-between;
+  }
+}
